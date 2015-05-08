@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Connects to a server (first arg) and populates it with a constant stream of
+# Connects to a server (first arg) port (second arg) and populates it with a constant stream of
 # events for testing.
 
 require 'rubygems'
@@ -14,7 +14,7 @@ class Riemann::Bench
     @hosts = %w(a b c d e f g h i j)
     @services = %w(test1 test2 test3 foo bar baz xyzzy attack cat treat)
     @states = {}
-    @client = Riemann::Client.new(:host => (ARGV.first || 'localhost'))
+    @client = Riemann::Client.new(:host => (ARGV[0] || 'localhost'), :port => (ARGV[1] || 5555))
   end
 
   def evolve(state)
